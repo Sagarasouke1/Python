@@ -4,8 +4,6 @@ from datetime import datetime
 
 # Configuración de la base de datos
 HOST = '10.100.1.242'
-
-
 USER = 'webmaster'
 PASSWORD = 'fpMvWmpYAMs^p?,H*)q+1Z]a!e^g*r'
 DATABASE = 'scp_system_dev'
