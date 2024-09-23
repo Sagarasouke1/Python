@@ -11,3 +11,5 @@ if __name__ == '__main__':
     # El modo debug permite el auto-reload de la aplicación cuando se hacen cambios en el código,
     # y también proporciona una interfaz interactiva de depuración en caso de errores.
     app.run(debug=True)
+
+
