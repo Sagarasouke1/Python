@@ -8,16 +8,17 @@ from .utils import custom_json_serializer, error_response
 from .extensions import db
 from werkzeug.exceptions import Unauthorized
 
-# Configurar logging
-logging.basicConfig(filename='api_access.log', level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+# Configurar logging para registrar accesos y errores
+logging.basicConfig(filename='api_access.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Definir un Blueprint para la API y asociarlo con Flask-RESTful
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
 def log_access(endpoint, token=None, success=True, message=None):
-    """ Función para registrar el acceso a la API """
+    """
+    Función para registrar accesos exitosos a los endpoints de la API.
+    """
     username = None
     if token:
         token_record = TokenUser.query.filter_by(token=token).first()
@@ -29,7 +30,9 @@ def log_access(endpoint, token=None, success=True, message=None):
     logging.info(log_message)
 
 def log_error(error_message, token=None):
-    """ Función para registrar errores en la API """
+    """
+    Función para registrar errores en la API.
+    """
     username = None
     if token:
         token_record = TokenUser.query.filter_by(token=token).first()
@@ -37,6 +40,7 @@ def log_error(error_message, token=None):
             username = token_record.username
     logging.error(f"Error: {error_message} | User: {username or 'Unknown'}")
 
+# Recurso para manejar el registro de usuarios
 class UserRegistration(Resource):
     def post(self):
         data = request.get_json()
@@ -56,6 +60,7 @@ class UserRegistration(Resource):
         log_access('/register', success=True, message=f"Usuario {username} registrado exitosamente.")
         return {'message': 'Usuario creado con éxito.'}, 201
 
+# Recurso para manejar el inicio de sesión de usuarios
 class UserLogin(Resource):
     def post(self):
         data = request.get_json()
@@ -103,6 +108,7 @@ class UserLogin(Resource):
                 'expires_in': 86400
             }, 200
 
+# Recurso para manejar la creación de envíos
 class ShipmentResource(Resource):
     def post(self):
         token = request.headers.get('Authorization')
@@ -129,7 +135,7 @@ class ShipmentResource(Resource):
             log_error(f"estatus_factura inválido ({estatus_factura}) en la creación de envío.")
             return {'error': 'estatus_factura debe ser 1, 2 o 3.'}, 400
 
-        # Insert information in sustituye_por if estatus_factura is 3, else set it to None
+        # Insertar información en sustituye_por si estatus_factura es 3, de lo contrario, dejarlo en None
         sustituye_por = data.get('sustituye_por') if estatus_factura == 3 else None
 
         new_shipment = Shipment(
@@ -147,7 +153,6 @@ class ShipmentResource(Resource):
 
         log_access('/shipments', token=token, success=True, message="Nuevo envío creado.")
         return {'message': 'Registro creado con éxito.'}, 201
-
 
 # Añadir los recursos a la API
 api.add_resource(UserRegistration, '/register')

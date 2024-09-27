@@ -20,7 +20,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Clave secreta utilizada para la seguridad de la aplicación, como la protección de sesiones y JWT
-    SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')  # Valor predeterminado en caso de que no se configure en .env
+    SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')  # Valor predeterminado si no se configura en .env
 
     # Opciones del motor SQLAlchemy para optimizar la conexión a la base de datos
     SQLALCHEMY_ENGINE_OPTIONS = {
