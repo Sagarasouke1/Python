@@ -6,3 +6,25 @@
 2024-09-04 08:34:46,112 - INFO -  * Debugger PIN: 802-984-725
 2024-09-04 08:34:59,127 - INFO - Endpoint: /shipments | User: emanuel2 | Success: True | Message: Nuevo envío creado.
 2024-09-04 08:34:59,182 - INFO - 127.0.0.1 - - [04/Sep/2024 08:34:59] "[35m[1mPOST /api/v1/shipments HTTP/1.1[0m" 201 -
+2024-09-27 10:28:24,796 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-27 10:28:24,804 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-27 10:28:24,812 - INFO -  * Restarting with stat
+2024-09-27 10:28:26,235 - WARNING -  * Debugger is active!
+2024-09-27 10:28:26,240 - INFO -  * Debugger PIN: 692-093-490
+2024-09-27 10:29:54,713 - INFO - Endpoint: /login | User: Unknown | Success: True | Message: Token generado para emanuel2.
+2024-09-27 10:29:54,714 - INFO - 127.0.0.1 - - [27/Sep/2024 10:29:54] "POST /api/v1/login HTTP/1.1" 200 -
+2024-09-27 10:30:23,739 - INFO - Endpoint: /shipments | User: emanuel2 | Success: True | Message: Nuevo envío creado.
+2024-09-27 10:30:23,791 - INFO - 127.0.0.1 - - [27/Sep/2024 10:30:23] "[35m[1mPOST /api/v1/shipments HTTP/1.1[0m" 201 -
+2024-09-27 10:41:21,466 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-27 10:41:21,466 - INFO - [33mPress CTRL+C to quit[0m
+2024-09-27 10:41:21,467 - INFO -  * Restarting with stat
+2024-09-27 10:41:22,934 - WARNING -  * Debugger is active!
+2024-09-27 10:41:22,943 - INFO -  * Debugger PIN: 692-093-490
+2024-09-27 10:47:26,087 - INFO - Endpoint: /shipments | User: emanuel2 | Success: True | Message: Nuevo envío creado.
+2024-09-27 10:47:26,140 - INFO - 127.0.0.1 - - [27/Sep/2024 10:47:26] "[35m[1mPOST /api/v1/shipments HTTP/1.1[0m" 201 -
+2024-09-27 10:59:32,486 - INFO -  * Detected change in 'Q:\\Github\\Python\\ZAM-SCP\\app\\resources.py', reloading
+2024-09-27 10:59:32,699 - INFO -  * Restarting with stat
+2024-09-27 10:59:34,378 - WARNING -  * Debugger is active!
+2024-09-27 10:59:34,386 - INFO -  * Debugger PIN: 692-093-490

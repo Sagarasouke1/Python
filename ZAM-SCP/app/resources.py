@@ -118,7 +118,7 @@ class ShipmentResource(Resource):
 
         data = request.get_json()
 
-        required_fields = ['operacion', 'viaje', 'area_viaje', 'carta_porte', 'factura', 'estatus_factura', 'sustituye_por']
+        required_fields = ['operacion', 'viaje', 'area_viaje', 'carta_porte', 'factura', 'estatus_factura']
         if not all(field in data for field in required_fields):
             log_error(f"Faltan datos en la creación de envío por {token_record.username}.")
             return {'error': 'Faltan datos. Asegúrate de proporcionar todos los campos requeridos.'}, 400
@@ -129,6 +129,9 @@ class ShipmentResource(Resource):
             log_error(f"estatus_factura inválido ({estatus_factura}) en la creación de envío.")
             return {'error': 'estatus_factura debe ser 1, 2 o 3.'}, 400
 
+        # Insert information in sustituye_por if estatus_factura is 3, else set it to None
+        sustituye_por = data.get('sustituye_por') if estatus_factura == 3 else None
+
         new_shipment = Shipment(
             operacion=data['operacion'],
             viaje=data['viaje'],
@@ -136,7 +139,7 @@ class ShipmentResource(Resource):
             carta_porte=data['carta_porte'],
             factura=data['factura'],
             estatus_factura=estatus_factura,
-            sustituye_por=data['sustituye_por']
+            sustituye_por=sustituye_por
         )
 
         db.session.add(new_shipment)
@@ -144,6 +147,7 @@ class ShipmentResource(Resource):
 
         log_access('/shipments', token=token, success=True, message="Nuevo envío creado.")
         return {'message': 'Registro creado con éxito.'}, 201
+
 
 # Añadir los recursos a la API
 api.add_resource(UserRegistration, '/register')
